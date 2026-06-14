@@ -95,7 +95,7 @@ An administrator lands on a dashboard that summarizes the data at a glance — t
 ### Key Entities *(include if feature involves data)*
 
 - **Company**: An organization tracked by the application. Key attributes include a unique identifier, company name (required), and descriptive details such as a short code/registration reference, industry/category, address, primary contact (email/phone), website, status (e.g., active/inactive), and created/updated timestamps. A company has zero or more departments.
-- **Department**: An organizational unit belonging to a single company. Key attributes include a unique identifier, the owning company reference (required), department name (required), an optional code, an optional description, an optional department head/manager name, status, and created/updated timestamps. A department belongs to exactly one company.
+- **Department**: An organizational unit belonging to a single company. Key attributes include a unique identifier, the owning company reference (required), department name (required), an optional code, an optional description, an optional department head/manager name, an optional contact phone number, status, and created/updated timestamps. A department belongs to exactly one company.
 
 ## Success Criteria *(mandatory)*
 

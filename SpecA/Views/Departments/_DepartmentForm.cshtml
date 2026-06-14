@@ -1,0 +1,43 @@
+@model SpecA.Models.ViewModels.DepartmentFormViewModel
+
+<input type="hidden" asp-for="Id" />
+<input type="hidden" asp-for="CompanyId" />
+<input type="hidden" asp-for="CompanyName" />
+
+<div class="row g-3">
+    <div class="col-12">
+        <label class="form-label">Company</label>
+        <input class="form-control" value="@Model.CompanyName" disabled />
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Code" class="form-label"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Manager" class="form-label"></label>
+        <input asp-for="Manager" class="form-control" />
+        <span asp-validation-for="Manager" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label asp-for="IsActive" class="form-check-label"></label>
+        </div>
+    </div>
+</div>
