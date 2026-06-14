@@ -1,0 +1,50 @@
+@model SpecA.Models.Company
+@{
+    ViewData["Title"] = "Delete Company";
+}
+
+<div class="pagetitle">
+    <h1>Delete Company</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index">Companies</a></li>
+            <li class="breadcrumb-item active">Delete</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="card">
+        <div class="card-body pt-4">
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+                Are you sure you want to delete <strong>@Model.Name</strong>? This action cannot be undone.
+            </div>
+
+            @if (Model.Departments.Any())
+            {
+                <div class="alert alert-warning">
+                    <strong>Warning:</strong> The following @Model.Departments.Count department(s) belong to this company and will also be permanently deleted:
+                    <ul class="mb-0 mt-2">
+                        @foreach (var dept in Model.Departments)
+                        {
+                            <li>@dept.Name</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt><dd class="col-sm-9">@Model.Name</dd>
+                <dt class="col-sm-3">Industry</dt><dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Industry) ? "—" : Model.Industry)</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</section>

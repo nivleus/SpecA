@@ -1,0 +1,35 @@
+@model SpecA.Models.ViewModels.DepartmentFormViewModel
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<div class="pagetitle">
+    <h1>Edit Department</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Companies" asp-action="Index">Companies</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId">@Model.CompanyName</a></li>
+            <li class="breadcrumb-item active">Edit Department</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="card">
+        <div class="card-body pt-4">
+            <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <partial name="_DepartmentForm" model="Model" />
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save</button>
+                    <a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

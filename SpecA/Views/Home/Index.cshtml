@@ -1,8 +1,97 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model SpecA.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
 </div>
+
+<section class="section dashboard">
+    <div class="row">
+        <!-- KPI cards -->
+        <div class="col-lg-6">
+            <div class="card info-card">
+                <div class="card-body d-flex align-items-center pt-4">
+                    <div class="card-icon bg-accent me-3">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div>
+                        <span class="text-muted small text-uppercase">Companies</span>
+                        <h6>@Model.CompanyCount</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card info-card">
+                <div class="card-body d-flex align-items-center pt-4">
+                    <div class="card-icon bg-green me-3">
+                        <i class="bi bi-diagram-3"></i>
+                    </div>
+                    <div>
+                        <span class="text-muted small text-uppercase">Departments</span>
+                        <h6>@Model.DepartmentCount</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Recent companies -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body pt-4">
+                    <h5 class="card-title">Recent Companies</h5>
+                    @if (!Model.RecentCompanies.Any())
+                    {
+                        <p class="text-muted mb-0">No companies yet. <a asp-controller="Companies" asp-action="Create">Add the first one</a>.</p>
+                    }
+                    else
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var c in Model.RecentCompanies)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <a asp-controller="Companies" asp-action="Details" asp-route-id="@c.Id">@c.Name</a>
+                                    <span class="badge bg-info">@c.Departments.Count dept(s)</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent departments -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body pt-4">
+                    <h5 class="card-title">Recent Departments</h5>
+                    @if (!Model.RecentDepartments.Any())
+                    {
+                        <p class="text-muted mb-0">No departments yet.</p>
+                    }
+                    else
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var d in Model.RecentDepartments)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <span>@d.Name</span>
+                                    <a class="text-muted small" asp-controller="Companies" asp-action="Details" asp-route-id="@d.CompanyId">@d.Company?.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

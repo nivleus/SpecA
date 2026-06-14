@@ -1,0 +1,41 @@
+@model SpecA.Models.Department
+@{
+    ViewData["Title"] = "Delete Department";
+}
+
+<div class="pagetitle">
+    <h1>Delete Department</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Companies" asp-action="Index">Companies</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId">@Model.Company?.Name</a></li>
+            <li class="breadcrumb-item active">Delete</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="card">
+        <div class="card-body pt-4">
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+                Are you sure you want to delete the department <strong>@Model.Name</strong>
+                from <strong>@Model.Company?.Name</strong>? This action cannot be undone.
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt><dd class="col-sm-9">@Model.Name</dd>
+                <dt class="col-sm-3">Code</dt><dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Code) ? "—" : Model.Code)</dd>
+                <dt class="col-sm-3">Manager</dt><dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Manager) ? "—" : Model.Manager)</dd>
+                <dt class="col-sm-3">Phone</dt><dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Phone) ? "—" : Model.Phone)</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+                <a asp-controller="Companies" asp-action="Details" asp-route-id="@Model.CompanyId" class="btn btn-outline-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</section>

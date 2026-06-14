@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+// SpecA client-side behavior.
 
-// Write your JavaScript code.
+// Sidebar collapse/expand toggle (per SpecA/UIUX.MD).
+document.addEventListener("DOMContentLoaded", function () {
+    var toggleBtn = document.getElementById("toggle-sidebar-btn");
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", function () {
+            document.body.classList.toggle("toggle-sidebar");
+        });
+    }
+});
