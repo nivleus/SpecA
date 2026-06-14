@@ -56,7 +56,7 @@ MUST be expressed as EF migrations — never hand-edited against the live
 database. Direct ADO.NET or inline SQL is prohibited except for a deliberate,
 documented performance exception approved per the amendment process. The
 database connection string MUST be
-`Server=.;Database=ITAssetManagerDB;Integrated Security=True;TrustServerCertificate=True;`
+`Server=.;Database=SpecA;Integrated Security=True;TrustServerCertificate=True;`
 and MUST be sourced from configuration (e.g., `appsettings.json`), never
 hard-coded in controllers, services, or the `DbContext`.
 
@@ -113,7 +113,7 @@ The project is bound to the following stack; deviations require an amendment:
 - **Database**: Microsoft SQL Server.
 - **UI**: Bootstrap 5.
 - **Connection string** (canonical, configuration-sourced):
-  `Server=.;Database=ITAssetManagerDB;Integrated Security=True;TrustServerCertificate=True;`
+  `Server=.;Database=SpecA;Integrated Security=True;TrustServerCertificate=True;`
 
 Standards:
 
